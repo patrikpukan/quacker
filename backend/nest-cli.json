@@ -1,0 +1,21 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "src",
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "@nestjs/graphql",
+        "typeFileNameSuffix": [".input-type.ts", ".type.ts", ".args.ts"],
+        "introspectComments": true
+      },
+      "@nestjs/swagger"
+    ],
+    "assets": [
+      {
+        "include": "../assets/**/*",
+        "outDir": "dist/assets/",
+        "watchAssets": true
+      }
+    ]
+  }
+}

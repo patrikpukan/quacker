@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "strict": true,
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "inlineSources": true,
+
+    // Set `sourceRoot` to  "/" to strip the build path prefix
+    // from generated source code references.
+    // This improves issue grouping in Sentry.
+    "typeRoots": ["./prisma", "./node_modules/@types"],
+    "types": ["node"]
+  },
+  "include": [
+    "prisma/prisma-json-types.ts",
+    "src/**/*",
+    "test/**/*",
+    "src/scripts/seed/utils/seed-dir-to-storage.ts",
+    "src/scripts/seed/utils",
+    "scripts/seed/switch-database.ts"
+  ]
+}

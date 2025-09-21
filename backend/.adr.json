@@ -1,0 +1,7 @@
+{
+  "language": "en",
+  "path": "docs/adr/",
+  "prefix": "",
+  "digits": 4,
+  "extension": "md"
+}
