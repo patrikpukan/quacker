@@ -32,9 +32,15 @@ jobs:
 
             # Add any build or restart commands here, for example:
             # echo "📦 Installing dependencies..."
-            # npm install
+            corepack enable
+            yarn install
             # echo "🛠️  Building the application..."
-            # npm run build
+            yarn check-all
+            yarn backend build
+            yarn backend seed
+            yarn frontend build
+            yarn restart
+
             # echo "🚀 Restarting application..."
             # pm2 reload all
 
