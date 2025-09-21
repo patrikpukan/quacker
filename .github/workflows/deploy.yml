@@ -1,0 +1,41 @@
+name: Deploy to Production Server (with Password)
+
+# Trigger this workflow on every push to the main branch
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy Job
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Install sshpass
+      # The default GitHub runner doesn't include sshpass, so we must install it.
+      - name: Install sshpass
+        run: sudo apt-get update && sudo apt-get install -y sshpass
+
+      # Step 2: Run deployment commands on the server
+      # This uses sshpass to provide the password to the SSH command non-interactively.
+      - name: Run deployment commands
+        run: |
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+            # Navigate to the project directory
+            cd ${{ secrets.PROJECT_PATH }}
+
+            # Pull the latest changes from the main branch
+            echo "➡️  Pulling latest changes..."
+            git pull origin main
+
+            # Add any build or restart commands here, for example:
+            # echo "📦 Installing dependencies..."
+            # npm install
+            # echo "🛠️  Building the application..."
+            # npm run build
+            # echo "🚀 Restarting application..."
+            # pm2 reload all
+
+            echo "✅ Deployment successful!"
+          EOF
