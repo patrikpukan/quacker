@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => {
       proxy: { '/uploads': { target: env.VITE_UPLOADS, changeOrigin: true } },
       allowedHosts: env.VITE_ALLOWED_HOSTS
         ? env.VITE_ALLOWED_HOSTS.split(',')
-        : [],
+        : ['dev-frontend-pukp00-vse.handson.pro', 'localhost', '127.0.0.1'],
     },
     build: { outDir: 'build', copyPublicDir: false },
     resolve: {
