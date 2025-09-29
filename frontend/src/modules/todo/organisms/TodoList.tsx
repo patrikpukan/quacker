@@ -11,7 +11,14 @@ type Props = {
 
 export function TodoList({ todos, onToggle, onRemove, ...stackProps }: Props) {
   return (
-    <Stack spaceY={2} {...stackProps}>
+    <Stack
+      spaceY={2}
+      borderWidth="1px"
+      borderColor="gray.300"
+      borderRadius="lg"
+      p={3}
+      {...stackProps}
+    >
       {todos.map((todo) => (
         <TodoItem
           key={todo.id}
