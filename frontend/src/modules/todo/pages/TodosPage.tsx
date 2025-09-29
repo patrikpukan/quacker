@@ -16,6 +16,7 @@ export function TodosPage() {
       <AddTodoForm onSubmit={add} />
       <Tabs.Root
         value={filter}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onValueChange={(details) => setFilter(details.value as any)}
         mt={6}
       >
