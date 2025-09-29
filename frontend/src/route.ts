@@ -1,4 +1,5 @@
 import { Practical01Page } from './modules/static-pages/pages/Practical01Page';
+import { TodosPage } from './modules/todo/pages/TodosPage';
 
 export const route = {
   home: () => `/`,
@@ -13,4 +14,5 @@ export const route = {
 export const PRACTICALS = [
   // Practical pages
   { id: '01', PageComponent: Practical01Page, wrapperProps: {} },
+  { id: '02', PageComponent: TodosPage },
 ];
