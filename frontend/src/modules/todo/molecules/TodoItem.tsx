@@ -1,9 +1,6 @@
 import { Checkbox, Flex, IconButton } from '@chakra-ui/react';
 
-import {
-  Icon,
-  TransparentButton,
-} from '@frontend/shared/design-system/components';
+import { Icon } from '@frontend/shared/design-system/components';
 import { DeleteIcon } from '@frontend/shared/design-system/icons';
 
 import type { Todo } from '../types';
@@ -34,6 +31,7 @@ export function TodoItem({ todo, onToggle, onRemove }: Props) {
         <Checkbox.Control />
         <Checkbox.Label
           textDecoration={todo.isDone ? 'line-through' : undefined}
+          opacity={todo.isDone ? 0.6 : 1}
         >
           {todo.title}
         </Checkbox.Label>
