@@ -1,12 +1,27 @@
 import { useState } from 'react';
 
-import { Todo } from '../types';
+import type { Todo } from '../types';
 
-type Filter = 'all' | 'completed' | 'notCompleted';
+export const FILTER_STATE = {
+  all: 'all',
+  done: 'done',
+  notDone: 'not-done',
+} as const;
+
+export type TodoFilter = (typeof FILTER_STATE)[keyof typeof FILTER_STATE];
+
+const filterFunctions = {
+  [FILTER_STATE.all]: (todos: Todo[]) => todos,
+  [FILTER_STATE.done]: (todos: Todo[]) => todos.filter((todo) => todo.isDone),
+  [FILTER_STATE.notDone]: (todos: Todo[]) =>
+    todos.filter((todo) => !todo.isDone),
+} as const;
 
 export function useTodos(initialState: Todo[] = []) {
   const [todos, setTodos] = useState<Todo[]>(initialState);
-  const [filter, setFilter] = useState<Filter>('all');
+  const [filter, setFilter] = useState<TodoFilter>(FILTER_STATE.all);
+
+  const filteredTodos = filterFunctions[filter](todos);
 
   const add = (title: Todo['title']) => {
     const t = title.trim();
@@ -27,11 +42,6 @@ export function useTodos(initialState: Todo[] = []) {
   const remove = (id: Todo['id']) => {
     setTodos((prev) => prev.filter((todo) => todo.id !== id));
   };
-
-  const filteredTodos =
-    filter === 'all'
-      ? todos
-      : todos.filter((t) => (filter === 'completed' ? t.isDone : !t.isDone));
 
   return { todos: filteredTodos, add, toggle, remove, filter, setFilter };
 }

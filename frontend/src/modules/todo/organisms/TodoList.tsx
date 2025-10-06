@@ -1,32 +1,43 @@
-import { Stack, type StackProps } from '@chakra-ui/react';
+import { Center, Stack } from '@chakra-ui/react';
 
+import { FILTER_STATE, type TodoFilter } from '../hooks/useTodos';
 import { TodoItem } from '../molecules/TodoItem';
-import { Todo } from '../types';
+import type { Todo } from '../types';
 
 type Props = {
   todos: Todo[];
+  filter: TodoFilter;
   onToggle: (id: Todo['id']) => void;
   onRemove: (id: Todo['id']) => void;
-} & Omit<StackProps, 'onToggle' | 'onRemove'>;
+};
 
-export function TodoList({ todos, onToggle, onRemove, ...stackProps }: Props) {
+export function TodoList({ todos, filter, onToggle, onRemove }: Props) {
+  const hasTodos = todos.length > 0;
+
   return (
     <Stack
-      spaceY={2}
-      borderWidth="1px"
       borderColor="gray.300"
-      borderRadius="lg"
-      p={3}
-      {...stackProps}
+      borderWidth="1px"
+      spaceY="0"
+      overflow="hidden"
+      rounded="md"
     >
-      {todos.map((todo) => (
-        <TodoItem
-          key={todo.id}
-          todo={todo}
-          onToggle={onToggle}
-          onRemove={onRemove}
-        />
-      ))}
+      {hasTodos ? (
+        <>
+          {todos.map((todo) => (
+            <TodoItem
+              key={todo.id}
+              todo={todo}
+              onToggle={onToggle}
+              onRemove={onRemove}
+            />
+          ))}
+        </>
+      ) : (
+        <Center py="2.5" color="gray">
+          No items {filter !== FILTER_STATE.all ? 'for selected filter' : null}
+        </Center>
+      )}
     </Stack>
   );
 }

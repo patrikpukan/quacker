@@ -1,7 +1,5 @@
 import { Checkbox, Flex, IconButton } from '@chakra-ui/react';
-
-import { Icon } from '@frontend/shared/design-system/components';
-import { DeleteIcon } from '@frontend/shared/design-system/icons';
+import { FaRegTrashAlt as TrashIcon } from 'react-icons/fa';
 
 import type { Todo } from '../types';
 
@@ -16,32 +14,36 @@ export function TodoItem({ todo, onToggle, onRemove }: Props) {
     <Flex
       justify="space-between"
       align="center"
-      p={1}
-      borderRadius="md"
-      transitionProperty="background-color"
-      transitionDuration="normal"
+      className="group"
       _hover={{ backgroundColor: 'gray.100' }}
+      py="1"
+      px="2"
     >
       <Checkbox.Root
-        checked={todo.isDone}
         colorPalette="blue"
+        checked={todo.isDone}
         onChange={() => onToggle(todo.id)}
       >
         <Checkbox.HiddenInput />
         <Checkbox.Control />
         <Checkbox.Label
-          textDecoration={todo.isDone ? 'line-through' : undefined}
-          opacity={todo.isDone ? 0.6 : 1}
+          textDecoration={todo.isDone ? 'line-through' : 'none'}
+          color={todo.isDone ? 'gray.500' : undefined}
         >
           {todo.title}
         </Checkbox.Label>
       </Checkbox.Root>
       <IconButton
         aria-label="Delete todo"
+        size="sm"
         colorPalette="red"
+        visibility="hidden"
         onClick={() => onRemove(todo.id)}
+        _groupHover={{
+          visibility: 'visible',
+        }}
       >
-        <Icon as={DeleteIcon} />
+        <TrashIcon />
       </IconButton>
     </Flex>
   );
