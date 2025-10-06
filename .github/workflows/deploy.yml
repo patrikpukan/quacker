@@ -26,6 +26,11 @@ jobs:
             # Navigate to the project directory
             cd ${{ secrets.PROJECT_PATH }}
 
+            # Drop any local changes before pulling
+            echo "🧹 Dropping local changes..."
+            git reset --hard HEAD
+            git clean -fd
+
             # Pull the latest changes from the main branch
             echo "➡️  Pulling latest changes..."
             git pull origin main
