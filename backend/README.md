@@ -63,9 +63,9 @@ This project uses MariaDB running in Docker Compose for both development and pro
 
 1. Start the database and adminer:
 
-   ```bash
-   yarn backend docker:up
-   ```
+```bash
+yarn backend docker:up
+```
 
 2. Access Adminer at http://localhost:8080
 
@@ -73,19 +73,6 @@ This project uses MariaDB running in Docker Compose for both development and pro
    - Username: quackerUser
    - Password: quackerPassword
    - Database: quacker
-
-3. Start the MariaDB:
-   ```bash
-   yarn backend docker:up
-   ```
-
-### Database Reset
-
-To reset your database:
-
-```bash
-yarn backend db:reset
-```
 
 ## Running in Development
 

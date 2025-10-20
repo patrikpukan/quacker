@@ -8,7 +8,7 @@ import { execSync } from 'child_process';
  */
 export function syncPrismaSchema(): void {
   try {
-    execSync('npx prisma db push', { stdio: 'inherit' });
+    execSync('npx prisma db push --force-reset', { stdio: 'inherit' });
     console.log('Database schema synced with Prisma schema.');
   } catch (error) {
     console.error('Failed to sync database schema:', error);

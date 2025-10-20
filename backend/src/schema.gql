@@ -2,13 +2,48 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input AddAuthorInputType {
+  bio: String!
+  birthYear: Float!
+  bookIds: [String!]!
+  name: String!
+}
+
+input AddBookInputType {
+  authorIds: [String!]!
+  description: String!
+  isbn: String!
+  releaseYear: Float!
+  title: String!
+}
+
+type AuthorType {
+  bio: String!
+  birthYear: Float!
+  books: [BookType!]!
+  id: ID!
+  name: String!
+}
+
+type BookType {
+  authors: [AuthorType!]!
+  description: String
+  id: ID!
+  isbn: String
+  releaseYear: Float
+  title: String!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
 
 type Mutation {
+  addAuthor(data: AddAuthorInputType!): AuthorType!
+  addBook(data: AddBookInputType!): BookType!
   addQuack(text: String!): Quack!
+  deleteBook(bookId: String!): BookType
   deleteQuack(quackId: Float!): String!
   deleteUser(id: ID!): User!
   signUp(data: SignUpInputType!): User!
@@ -32,6 +67,8 @@ type QuackCreatedEventType {
 }
 
 type Query {
+  authors: [AuthorType!]!
+  books: [BookType!]!
   quacks: [Quack!]!
   user(username: String!): User
 }

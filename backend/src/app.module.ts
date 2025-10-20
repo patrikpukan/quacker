@@ -2,6 +2,8 @@ import { join } from 'node:path';
 import { ConfigModule } from '@applifting-io/nestjs-decorated-config';
 import { Module } from '@nestjs/common';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { AuthorModule } from './modules/authors/authors.module';
+import { BooksModule } from './modules/books/books.module';
 import { QuackModule } from './modules/quack/quack.module';
 import { UsersModule } from './modules/users/users.module';
 import { WelcomeModule } from './modules/welcome/welcome.module';
@@ -23,6 +25,8 @@ const imports = [
   WelcomeModule,
   QuackModule,
   UsersModule,
+  BooksModule,
+  AuthorModule,
   WelcomeModule,
   GraphqlSetupModule,
 ];

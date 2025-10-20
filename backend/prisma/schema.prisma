@@ -104,3 +104,28 @@ model User {
   @@unique([username])
   @@map("user")
 }
+
+model Book {
+  id          String   @id @default(cuid())
+  title       String
+  description String   @db.Text
+  releaseYear Int
+  isbn        String
+  authors     Author[] @relation("BookAuthor")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("book")
+}
+
+model Author {
+  id        String   @id @default(cuid())
+  name      String
+  bio       String   @db.Text
+  birthYear Int
+  books     Book[]   @relation("BookAuthor")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("author")
+}

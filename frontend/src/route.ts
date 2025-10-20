@@ -1,5 +1,5 @@
 import { Practical01Page } from './modules/static-pages/pages/Practical01Page';
-import { Practical03Page } from './modules/static-pages/pages/Practical03Page';
+import { Practical03Page } from './modules/static-pages/Practical03Page/Practical03Page';
 import { TodosPage } from './modules/todo/pages/TodosPage';
 
 export const route = {
@@ -16,5 +16,5 @@ export const PRACTICALS = [
   // Practical pages
   { id: '01', PageComponent: Practical01Page, wrapperProps: {} },
   { id: '02', PageComponent: TodosPage },
-  { id: '03', PageComponent: Practical03Page },
+  { id: '03', PageComponent: Practical03Page, wrapperProps: {} },
 ];
